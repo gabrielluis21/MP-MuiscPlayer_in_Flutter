@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:mymusicplayer/effects/grow_and_opacity.dart';
 import 'package:mymusicplayer/screens/home_screen.dart';
@@ -15,19 +16,17 @@ class _LogoScreenState extends State<LogoScreen> with SingleTickerProviderStateM
   @override
   void initState() {
     super.initState();
-
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 5)
     );
-
     animation = CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn);
     animation2 = CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn);
     animation.addStatusListener((status) {
       if(status == AnimationStatus.completed){
         controller.reverse();
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => HomeScreen()));
+         Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => HomeScreen()));
       }
     });
     controller.forward();

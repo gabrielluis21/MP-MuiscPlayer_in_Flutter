@@ -34,7 +34,7 @@ dependencies:
   bloc_pattern: ^2.5.1
   sliding_up_panel: ^1.0.1
   dynamic_theme: ^1.0.1
-
+  flutter_media_notification: ^1.2.6
 
 dev_dependencies:
   flutter_test:

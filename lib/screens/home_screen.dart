@@ -2,6 +2,7 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_media_notification/flutter_media_notification.dart';
 import 'package:mymusicplayer/blocs/music_player_bloc.dart';
 import 'package:mymusicplayer/widgets/bottom_panel.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -19,9 +20,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   PanelController _panelController;
-
   @override
-  void initState() {
+  void initState(){
     _panelController = PanelController();
 
     super.initState();

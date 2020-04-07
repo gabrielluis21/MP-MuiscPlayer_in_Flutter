@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
+import 'package:flutter_media_notification/flutter_media_notification.dart';
 import 'package:mymusicplayer/data/album.dart';
 import 'package:mymusicplayer/data/music.dart';
 import 'package:mymusicplayer/data/playback.dart';
@@ -37,6 +39,7 @@ class MusicPlayerBloc {
     _initStreams();
     _initObservers();
     _initAudioPlayer();
+    _initNotificationActions();
   }
 
   Future<void> fetchSongs() async {
@@ -44,7 +47,8 @@ class MusicPlayerBloc {
     await _query.getSongs().then(
           (data) {
         data.forEach((element){
-          if(element.filePath.contains('/Music')){
+          if(element.filePath.contains('/Music') ||
+              element.filePath.contains("/music")){
             musics.add(new Music.fromSongInfo(element));
           }
         });
@@ -56,15 +60,18 @@ class MusicPlayerBloc {
   void playMusic(Music song) {
     _audioPlayer.play(song.filePath);
     updatePlayerState(PlayerState.playing, song);
+    _showNotification(song.displayName, song.artist, true);
   }
 
   void pauseMusic(Music song) {
     _audioPlayer.pause();
     updatePlayerState(PlayerState.paused, song);
+    _showNotification(song.displayName, song.artist, false);
   }
 
   void stopMusic() {
     _audioPlayer.stop();
+    _hideNotification();
   }
 
   void updatePlayerState(PlayerState state, Music song) {
@@ -224,9 +231,28 @@ class MusicPlayerBloc {
     return _song;
   }
 
+  Future<void> _hideNotification() async {
+    try {
+      await MediaNotification.hideNotification();
+    } on PlatformException {}
+  }
 
-  void _initDeafultSong() {
+  Future<void> _showNotification(title, author, isPlaying) async {
+    try {
+      await MediaNotification.showNotification(
+          title: title, author: author, isPlaying: isPlaying);
+    } on PlatformException {}
+  }
+
+   void _initDeafultSong() {
     _defaultSong = Music();
+  }
+
+  void _initNotificationActions(){
+    MediaNotification.setListener("play", () => playMusic (_playerState$.value.value));
+    MediaNotification.setListener("pause", () =>  pauseMusic(_playerState$.value.value));
+    MediaNotification.setListener("next", () => playNextSong());
+    MediaNotification.setListener("prev", () =>  playPreviousSong());
   }
 
   void _initObservers() {
