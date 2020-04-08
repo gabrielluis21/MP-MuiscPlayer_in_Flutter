@@ -15,7 +15,7 @@ class AlbumScreen extends StatelessWidget {
     return Scaffold(
       body: StreamBuilder<List<Album>>(
         stream: _globalBloc.albums$,
-        builder: (BuildContext context, AsyncSnapshot<List<Album>> snapshot) {
+        builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(),
@@ -40,7 +40,7 @@ class AlbumScreen extends StatelessWidget {
             ),
             physics: BouncingScrollPhysics(),
             itemCount: _albums.length,
-            itemBuilder: (BuildContext context, int index) {
+            itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
                   Navigator.push(context,

@@ -1,5 +1,7 @@
 
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:mymusicplayer/blocs/music_player_bloc.dart';
 import 'package:mymusicplayer/effects/grow_and_opacity.dart';
 import 'package:mymusicplayer/screens/home_screen.dart';
 
@@ -25,7 +27,8 @@ class _LogoScreenState extends State<LogoScreen> with SingleTickerProviderStateM
     animation.addStatusListener((status) {
       if(status == AnimationStatus.completed){
         controller.reverse();
-         Navigator.of(context).push(MaterialPageRoute(
+        BlocProvider.getBloc<MusicPlayerBloc>().fetchSongs();
+        Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => HomeScreen()));
       }
     });

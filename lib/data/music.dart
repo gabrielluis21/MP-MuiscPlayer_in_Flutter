@@ -15,7 +15,7 @@ class Music{
   String year;
   String track;
   String bookmark;
-  String albumId;
+  int albumId;
   bool isMusic;
   bool isAlarm;
   bool isPodcast;
@@ -47,7 +47,7 @@ class Music{
     return Music(id: songInfo.id, displayName: songInfo.displayName,
     title: songInfo.title, duration: int.parse(songInfo.duration),
     album: songInfo.album, filePath: songInfo.filePath,
-    fileSize: songInfo.fileSize, albumId: songInfo.albumId,
+    fileSize: songInfo.fileSize, albumId: int.parse(songInfo.albumId),
     artist: songInfo.artist, artistId: songInfo.artistId,
     albumArtNetwork: songInfo.albumArtwork, composer: songInfo.composer,
     year: songInfo.year, track: songInfo.track,

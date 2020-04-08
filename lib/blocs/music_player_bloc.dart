@@ -10,6 +10,7 @@ import 'package:mymusicplayer/data/playback.dart';
 import 'package:mymusicplayer/data/player_state.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mymusicplayer/utils/album_image.dart';
 
 class MusicPlayerBloc {
   BehaviorSubject<List<Music>> _songs$;
@@ -22,9 +23,9 @@ class MusicPlayerBloc {
   BehaviorSubject<List<Music>> _favorites$;
   BehaviorSubject<bool> _isAudioSeeking$;
 
-  FlutterAudioQuery _query = FlutterAudioQuery();
   AudioPlayer _audioPlayer;
   Music _defaultSong;
+  SharedPreferences _prefs;
 
   BehaviorSubject<List<Music>> get songs$ => _songs$;
   BehaviorSubject<List<Album>> get albums$ => _albums$;
@@ -42,8 +43,9 @@ class MusicPlayerBloc {
     _initNotificationActions();
   }
 
-  Future<void> fetchSongs() async {
-    List<Music> musics = [];
+  void fetchSongs() async {
+    List<Music> musics = List<Music>();
+    FlutterAudioQuery _query = FlutterAudioQuery();
     await _query.getSongs().then(
           (data) {
         data.forEach((element){
@@ -55,6 +57,7 @@ class MusicPlayerBloc {
       },
     );
     _songs$.add(musics);
+    _updateAlbums(_songs$.value);
   }
 
   void playMusic(Music song) {
@@ -89,13 +92,20 @@ class MusicPlayerBloc {
   }
 
   void _updateAlbums(List<Music> songs) {
-    Map<String, Album> _albumsMap = {};
-    for (Music song in songs) {
-      if (_albumsMap[song.albumId] == null) {
-        _albumsMap[song.albumId] = Album.fromSong(song);
-      }
+    Map<int, Album> _albumsMap = {};
+    /*AlbumImages art = AlbumImages();*/
+    songs.forEach((element) {
+      if(_albumsMap[element.albumId] == null)
+        _albumsMap[element.albumId] = new Album.fromSong(element);
+    });
+    for(Album album in _albumsMap.values) {
+       /*For now all album's arts will receve null until the AlbumImages class is done
+        using this method: art.albumFromNetwork(album);*/
+        album.art = null;
+        _albumsMap[album.id]= album;
     }
     final List<Album> _albums = _albumsMap.values.toList();
+
     _albums$.add(_albums);
   }
 
@@ -193,30 +203,37 @@ class MusicPlayerBloc {
     _playback$.add(_value);
   }
 
-  Future<void> saveFavorites() async {
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
-    final List<Music> _favorites = _favorites$.value;
-    List<String> _encodedStrings = [];
-    for (Music song in _favorites) {
-      _encodedStrings.add(_encodeSongToJson(song));
-    }
-    _prefs.setStringList("favorites", _encodedStrings);
-  }
 
+
+  Future<void> saveFavorites() async {
+    SharedPreferences.getInstance().then((sharedPreferences){
+      _prefs = sharedPreferences;
+        final List<Music> _favorites = _favorites$.value;
+        List<String> _encodedStrings = [];
+        for (Music song in _favorites) {
+         _encodedStrings.add(_encodeSongToJson(song));
+        }
+      _prefs.setStringList("favorites", _encodedStrings);
+    });
+
+  }
   void retrieveFavorites() async {
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
-    final List<Music> _fetchedSongs = _songs$.value;
-    List<String> _savedStrings = _prefs.getStringList("favorites") ?? [];
-    List<Music> _favorites = [];
-    for (String data in _savedStrings) {
-      final Music song = _decodeSongFromJson(data);
-      for (var fetchedSong in _fetchedSongs) {
-        if (song.id == fetchedSong.id) {
-          _favorites.add(fetchedSong);
+    SharedPreferences.getInstance().then((sharedPreferences){
+      _prefs = sharedPreferences;
+      _prefs.reload();
+      final List<Music> _fetchedSongs = _songs$.value;
+      List<String> _savedStrings = _prefs.getStringList("favorites") ?? [];
+      List<Music> _favorites = [];
+      for (String data in _savedStrings) {
+        final Music song = _decodeSongFromJson(data);
+        for (var fetchedSong in _fetchedSongs) {
+          if (song.id == fetchedSong.id) {
+            _favorites.add(fetchedSong);
+          }
         }
       }
-    }
-    _favorites$.add(_favorites);
+      _favorites$.add(_favorites);
+    });
   }
 
   String _encodeSongToJson(Music song) {

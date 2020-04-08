@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:mymusicplayer/data/album.dart';
 import 'package:mymusicplayer/widgets/empty_album_art.dart';
+
 
 class AlbumTile extends StatelessWidget {
   final Album _album;

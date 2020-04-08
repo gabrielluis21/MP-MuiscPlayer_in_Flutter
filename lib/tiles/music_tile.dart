@@ -86,7 +86,7 @@ class MusicTile extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  _music.displayName,
+                                  _music.title,
                                   style: TextStyle(
                                     fontSize: 20,
                                     color: Color(0xFF4D6B9C),

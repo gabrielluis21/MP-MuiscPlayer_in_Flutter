@@ -9,18 +9,18 @@ import 'package:rxdart/rxdart.dart';
 class PreferencesBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _musicBloc = BlocProvider.getBloc<MusicPlayerBloc>();
+    final _globalBloc = BlocProvider.getBloc<MusicPlayerBloc>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         StreamBuilder<MapEntry<MapEntry<PlayerState, Music>, List<Music>>>(
           stream: CombineLatestStream.combine2(
-            _musicBloc.playerState$,
-            _musicBloc.favorites$,
+            _globalBloc.playerState$,
+            _globalBloc.favorites$,
                 (a, b) => MapEntry(a, b),
           ),
-          builder: (context, snapshot) {
+          builder: ( context, snapshot) {
             if (!snapshot.hasData) {
               return Icon(
                 Icons.favorite,
@@ -42,9 +42,9 @@ class PreferencesBoard extends StatelessWidget {
             return IconButton(
               onPressed: () {
                 if (_isFavorited) {
-                  _musicBloc.removeFromFavorites(_currentSong);
+                  _globalBloc.removeFromFavorites(_currentSong);
                 } else {
-                  _musicBloc.addToFavorites(_currentSong);
+                  _globalBloc.addToFavorites(_currentSong);
                 }
               },
               icon: Icon(
@@ -56,12 +56,12 @@ class PreferencesBoard extends StatelessWidget {
           },
         ),
         StreamBuilder<List<Playback>>(
-          stream: _musicBloc.playback$,
+          stream: _globalBloc.playback$,
           builder:
-              (BuildContext context, AsyncSnapshot<List<Playback>> snapshot) {
+              (context,  snapshot) {
             if (!snapshot.hasData) {
               return Icon(
-                Icons.repeat,
+                Icons.loop,
                 size: 35,
                 color: Color(0xFFC7D2E3),
               );
@@ -72,13 +72,13 @@ class PreferencesBoard extends StatelessWidget {
             return IconButton(
               onPressed: () {
                 if (!_isSelected) {
-                  _musicBloc.updatePlayback(Playback.repeatAll);
+                  _globalBloc.updatePlayback(Playback.repeatSong);
                 } else {
-                  _musicBloc.removePlayback(Playback.repeatAll);
+                  _globalBloc.removePlayback(Playback.repeatSong);
                 }
               },
               icon: Icon(
-                Icons.repeat,
+                Icons.loop,
                 size: 35,
                 color: !_isSelected ? Color(0xFFC7D2E3) : Color(0xFF7B92CA),
               ),
@@ -86,38 +86,9 @@ class PreferencesBoard extends StatelessWidget {
           },
         ),
         StreamBuilder<List<Playback>>(
-          stream: _musicBloc.playback$,
+          stream: _globalBloc.playback$,
           builder:
-              (BuildContext context, AsyncSnapshot<List<Playback>> snapshot) {
-            if (!snapshot.hasData) {
-              return Icon(
-                Icons.repeat_one,
-                size: 35,
-                color: Color(0xFFC7D2E3),
-              );
-            }
-            final List<Playback> _playbackList = snapshot.data;
-            final bool _isSelected =
-            _playbackList.contains(Playback.repeatSong);
-            return IconButton(
-              onPressed: () {
-                if (!_isSelected) {
-                  _musicBloc.updatePlayback(Playback.repeatSong);
-                } else {
-                  _musicBloc.removePlayback(Playback.repeatSong);
-                }
-              },
-              icon: Icon(
-                Icons.repeat_one,
-                size: 35,
-                color: !_isSelected ? Color(0xFFC7D2E3) : Color(0xFF7B92CA),
-              ),
-            );
-          },
-        ),
-        StreamBuilder<List<Playback>>(
-          stream: _musicBloc.playback$,
-          builder: (context, snapshot) {
+              (context,  snapshot) {
             if (!snapshot.hasData) {
               return Icon(
                 Icons.loop,
@@ -130,9 +101,9 @@ class PreferencesBoard extends StatelessWidget {
             return IconButton(
               onPressed: () {
                 if (!_isSelected) {
-                  _musicBloc.updatePlayback(Playback.shuffle);
+                  _globalBloc.updatePlayback(Playback.shuffle);
                 } else {
-                  _musicBloc.removePlayback(Playback.shuffle);
+                  _globalBloc.removePlayback(Playback.shuffle);
                 }
               },
               icon: Icon(
@@ -147,3 +118,4 @@ class PreferencesBoard extends StatelessWidget {
     );
   }
 }
+
