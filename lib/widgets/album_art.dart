@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mymusicplayer/data/music.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
 
 const URL = "https://deezerdevs-deezer.p.rapidapi.com/album/";
 const APIKEY = "fa7bf02584msh53ca5f86407711fp1b0b75jsn3d4d06547307";
@@ -31,20 +30,10 @@ class AlbumArtContainer extends StatelessWidget {
             width: double.infinity,
             height: _albumArtSize,
             child: FadeInImage(
-              placeholder: AdvancedNetworkImage(
-                  "$URL/${_currentSong.albumId.toString()}",
-                  header: {
-                    "x-rapidapi-key": APIKEY
-                  },
-                  useDiskCache: true,
-                  cacheRule: CacheRule(maxAge: const Duration(days: 7)),
-                ),
-              image: AdvancedNetworkImage(
-                  "$URL/${_currentSong.albumId}",
-                  header: {"X-rapidapi-key": APIKEY},
-                  useDiskCache: true,
-                  cacheRule: CacheRule(maxAge: const Duration(days: 7)),
-                ),
+              placeholder: AssetImage(_currentSong.albumArtNetwork),
+              image: AssetImage(
+                _currentSong.albumArtNetwork,
+              ),
               fit: BoxFit.fill,
             ),
           ),

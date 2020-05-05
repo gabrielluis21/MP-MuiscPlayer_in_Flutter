@@ -47,7 +47,7 @@ class _LogoScreenState extends State<LogoScreen> with SingleTickerProviderStateM
             animation: animation,
           ),
           GrowAndOpacityTransition(
-            child: Text("Music Player",
+            child: Text("MP - Music Player",
               style: TextStyle(fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),),

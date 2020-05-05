@@ -1,20 +1,6 @@
-# mymusicplayer
+# MP - Music Player - <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/assets/images/logo_app_music.png" width="50" height="50">
 
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-27-52-776.jpeg" width="250" height="250">
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-28-14-045.jpeg" width="250" height="250">
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-28-34-028.jpeg" width="250" height="250">
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-28-48-414.jpeg" width="250" height="250"> 
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-00-963.jpeg" width="250" height="250">
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-13-946.jpeg" width="250" height="250">
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-22-634.jpeg" width="250" height="250"> 
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-34-965.jpeg" width="250" height="250"> 
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-45-575.jpeg" width="250" height="250">
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-57-221.jpeg" width="250" height="250"> 
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-30-11-072.jpeg" width="250" height="250"> 
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-30-22-150.jpeg" width="250" height="250"> 
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-30-42-853.jpeg" width="250" height="250"> 
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-30-51-574.jpeg" width="250" height="250"> 
-<img scr="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_20200407-001718.jpeg" width="250" height="250">
+<img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-27-52-776.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-28-14-045.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-28-34-028.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-28-48-414.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-00-963.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-13-946.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-22-634.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-34-965.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-45-575.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-29-57-221.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-30-11-072.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-30-22-150.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-30-42-853.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_2020-04-06-16-30-51-574.jpeg" width="250"> <img src="https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/blob/master/screenshots/Screenshot_20200407-001718.jpeg" width="250">
 
 ---
 
@@ -35,27 +21,20 @@ This is a Music Player app, witch is a replica of [Chillify](https://github.com/
  and contains some modifications on the code, layout and freature
 
 #### App Freatures:
-	 [✓] Retrieve all songs(internal and ejeteble SD-CARD if present)
 
-	 [✓] Pause
-
-	 [✓] Play
-
-	 [✓] Seek
-
-	 [✓] Repeat
-
-	 [✓] Shuffle
-
-	 [✓] Now Playing
-
-	 [✓] add to favorites
-
-	 [✓] Search songs
-
-	 [✓] Albums
-
-	 [ ] Retrieve album art from network(Working on it)
+    [✓] Retrieve all songs(internal and ejeteble SD-CARD if present)
+    [✓] Pause
+    [✓] Play
+    [✓] Seek
+    [✓] Repeat
+    [✓] Shuffle
+    [✓] Now Playing
+    [✓] add to favorites
+    [✓] Search songs
+    [✓] Albums
+    [✓] Switch bettween Dark mode(Spooke mode) and Light Mode 
+    [ ] Auto  pause when headphones (bluetooth or wired) are disconnected (Working on it)
+    [ ] Retrieve album art from network(Working on it)
 
 #### Technologies
 
@@ -130,22 +109,13 @@ SOFTWARE.
 
 - Linkedin - [da Silva, Gabriel Luis](https://www.linkedin.com/in/gabriel-luis-da-silva-9810b167)
 - Facebook - [da Silva, Gabriel Luis](https://www.facebook.com/gabrielluis.dasilva)
-- E-mail - [Outlook](gabrielluis_21@hotmail.com) [Gmail](gabrielluis.21.gldsg@gmail.com)
+- E-mail - [Outlook](gabrielluis_21@hotmail.com) ou [Gmail](gabrielluis.21.gldsg@gmail.com)
 
 [Back To The Top](#read-me-template)
 
+---
 
-A new Flutter application.
+## Current issues
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Current issues list [is here](https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/issues).   
+Found a bug? [Open the issue](https://github.com/gabrielluis21/MP-MuiscPlayer_in_Flutter/issues/new).
